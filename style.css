@@ -63,7 +63,7 @@ main {
 }
 
 a {
-  color: blueviolet;
+  color: #a40000;
 }
 
 a:hover {
@@ -80,7 +80,7 @@ footer {
 }
 .download-btn {
   display: inline-block;
-  background-color: red;
+  background-color: #900101;
   border-radius: 15px;
   border: rgb(90, 3, 3) solid 2px;
   padding: 1rem;
