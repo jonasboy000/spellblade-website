@@ -27,7 +27,8 @@ header {
 }
 
 main {
-    padding-bottom: 5rem;
+  margin-top: 0.3rem;
+  padding-bottom: 5rem;
   max-width: 695px;
   display: flex;
   flex-direction: column;
@@ -69,13 +70,13 @@ a:hover {
   color: rgb(92, 29, 152);
   text-decoration: underline;
 }
-.download{
-    justify-content: center;
-    align-self: center;
+.download {
+  justify-content: center;
+  align-self: center;
 }
-footer{
-    margin-bottom: 0.2rem;
-    color: rgb(2, 100, 100);
+footer {
+  margin-bottom: 0.2rem;
+  color: rgb(2, 100, 100);
 }
 .download-btn {
   display: inline-block;
