@@ -12,6 +12,7 @@ body {
 }
 
 header {
+  margin-top: 0.3rem;
   display: flex;
   align-items: center;
   gap: 3rem;
@@ -27,7 +28,6 @@ header {
 }
 
 main {
-  margin-top: 0.3rem;
   padding-bottom: 5rem;
   max-width: 695px;
   display: flex;
