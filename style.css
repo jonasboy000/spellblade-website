@@ -109,6 +109,7 @@ footer {
 }
 @media (max-width: 600px) {
   body {
+    min-height: 100vh;
     padding: 0 1rem;
     font-size: 0.75rem;
   }
