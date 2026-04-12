@@ -1,34 +1,45 @@
 body {
   max-width: 800px;
+  min-height: 100vh;
   margin: 0 auto;
+  padding: 0 2rem;
   background-color: black;
-  color: aqua;
+  color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "EB Garamond", serif;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 0.8rem;
+
+  a {
+    color: #a40000;
+
+    &:hover {
+      color: rgb(92, 29, 152);
+      text-decoration: underline;
+    }
+  }
 }
 
 header {
   margin-top: 0.5rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 3rem;
 
   ul {
+    font-size: 1.5rem;
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    list-style: none;
+    gap: 5rem;
     padding: 0;
     margin: 0;
   }
 }
 
 main {
-  padding-bottom: 5rem;
+  flex: 1;
+  padding-bottom: 1rem;
   max-width: 695px;
   display: flex;
   flex-direction: column;
@@ -38,12 +49,24 @@ main {
 
     h2 {
       font-size: 1.5rem;
+      padding-bottom: 0.1rem;
+    }
+
+    &:last-child {
+      justify-content: center;
+      align-items: center;
     }
   }
 
-  article:last-child {
+  div {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    gap: 2rem;
+
+    article {
+      max-width: 50%;
+    }
   }
 
   button {
@@ -53,31 +76,20 @@ main {
     padding: 1rem;
     margin-top: 1rem;
     cursor: pointer;
-    color: aqua;
+    color: rgb(255, 255, 255);
     font-family: "EB Garamond", serif;
+
+    &:hover {
+      background-color: rgb(151, 5, 5);
+    }
   }
-
-  button:hover {
-    background-color: rgb(151, 5, 5);
-  }
 }
 
-a {
-  color: #a40000;
-}
-
-a:hover {
-  color: rgb(92, 29, 152);
-  text-decoration: underline;
-}
-.download {
-  justify-content: center;
-  align-self: center;
-}
 footer {
   margin-bottom: 0.2rem;
   color: rgb(2, 100, 100);
 }
+
 .download-btn {
   display: inline-block;
   background-color: #900101;
@@ -89,8 +101,32 @@ footer {
   color: aqua;
   font-family: "EB Garamond", serif;
   text-decoration: none;
+
+  &:hover {
+    background-color: rgb(151, 5, 5);
+    color: aqua;
+  }
 }
-.download-btn:hover {
-  background-color: rgb(151, 5, 5);
-  color: aqua;
+@media (max-width: 600px) {
+  body {
+    padding: 0 1rem;
+    font-size: 0.75rem;
+  }
+
+  header {
+    ul {
+      font-size: 1rem;
+      gap: 2rem;
+    }
+  }
+
+  main {
+    div {
+      flex-direction: column;
+
+      article {
+        max-width: 100%;
+      }
+    }
+  }
 }
