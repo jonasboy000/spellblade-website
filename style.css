@@ -121,6 +121,7 @@ footer {
   }
 
   main {
+    margin-top: -1rem;
     div {
       flex-direction: column;
       margin-top: -1rem;
@@ -133,3 +134,4 @@ footer {
     }
   }
 }
+
