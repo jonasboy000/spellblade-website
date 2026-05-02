@@ -1,0 +1,32 @@
+{
+  "69,32": {
+    "name": "Dunweard",
+    "description": "The town of Dunweard and its castle. To the east lie the mountains, to the northwest Lake Durn.",
+    "type": "city state",
+    "settlement": {
+      "population": 5000,
+      "size": "small",
+      "government": "feudal",
+      "economy": "iron mining, toll",
+      "military": "small standing garrison"
+    },
+    "ruler": {
+      "title": "Baron",
+      "name": "Elionore Vane",
+      "house": "Vane"
+    },
+    "geography": "mountains",
+    "climate": "cold",
+    "danger": 1,
+    "allegiance": "League of Margon",
+    "religion": "",
+    "landmarks": ["Dunweard Castle", "Township of Dunweard"],
+    "natural_landmarks": ["Durn Hills", "Lake Durn", "Durn Mountain Pass"],
+    "roads": [
+      { "to": "placeholder","km": 45, "type": "imperial", "state": "decent", "aprox travel days": 2 },
+      { "to": "placeholder", "km": 32, "type": "imperial", "state": "decent", "aprox travel days": 1.5}
+    ],
+    "quests": [],
+    "notes": ""
+  }
+}
