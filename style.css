@@ -114,6 +114,10 @@ footer {
     font-size: 0.75rem;
   }
 
+  body header nav ul {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
   header ul {
     gap: 2rem;
   }
