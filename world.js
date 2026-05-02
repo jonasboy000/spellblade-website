@@ -31,7 +31,8 @@ img.onload = function () {
     map.fitBounds(IMG_BOUNDS);
     const minZ = map.getBoundsZoom(IMG_BOUNDS, true);
     map.setMinZoom(minZ);
-    map.setMaxZoom(minZ + 6);
+    const isMobile = window.innerWidth <= 600;
+    map.setMaxZoom(minZ + (isMobile ? 10 : 6));
     map.setZoom(minZ);
   }, 100);
 
