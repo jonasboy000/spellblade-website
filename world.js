@@ -235,4 +235,26 @@ img.onload = function () {
       HEX_DATA = data;
       buildHexGrid();
     });
+  // ── mobile ──
+  const mobileBtn = document.getElementById("mobile-map-btn");
+  const mobileCloseBtn = document.getElementById("mobile-close-map");
+
+  mobileBtn.addEventListener("click", () => {
+    const box = document.getElementById("map-box");
+    box.classList.add("mobile-open");
+    mobileCloseBtn.style.display = "flex";
+    mobileBtn.style.display = "none";
+    setTimeout(() => {
+      map.invalidateSize();
+      map.fitBounds(IMG_BOUNDS);
+    }, 50);
+  });
+
+  mobileCloseBtn.addEventListener("click", () => {
+    const box = document.getElementById("map-box");
+    box.classList.remove("mobile-open");
+    mobileCloseBtn.style.display = "none";
+    mobileBtn.style.display = "block";
+    overlay.classList.remove("open");
+  });
 };
