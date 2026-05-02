@@ -114,11 +114,19 @@ footer {
     font-size: 0.75rem;
   }
 
-  header {
-    ul {
-      font-size: 1rem;
-      gap: 2rem;
-    }
+  header ul {
+    gap: 2rem;
+  }
+
+  header ul li {
+    list-style: none;
+  }
+
+  header ul li a {
+    display: inline-block;
+    padding: 0.5rem;
+    min-height: 44px;
+    line-height: 44px;
   }
 
   main {
