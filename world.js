@@ -16,7 +16,7 @@ const map = L.map("map", {
 });
 
 const img = new Image();
-img.src = "The-Western-Provinces.png";
+img.src = "The-Western-Provinces.jpg";
 img.onload = function () {
   const IMG_W = img.naturalWidth;
   const IMG_H = img.naturalHeight;
