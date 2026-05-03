@@ -1,0 +1,126 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --gold: #c8962a;
+  --gold-light: #e8c96a;
+  --gold-dark: #6b4e1a;
+  --gold-deep: #1a1200;
+  --teal: rgb(2, 100, 100);
+  --text: #ede1b3;
+  --text-muted: #a89870;
+  --font-body: "Lucida Sans", Geneva, Verdana, sans-serif;
+  --font-serif: "EB Garamond", serif;
+  --font-title: "Cinzel", serif;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  min-height: 100vh;
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main {
+  width: 100%;
+  flex: 1;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main a {
+  color: var(--gold);
+  text-decoration: none;
+}
+main a:hover {
+  color: var(--gold-light);
+  text-decoration: underline;
+}
+
+section,
+article {
+  width: 100%;
+  max-width: 700px;
+  margin-top: 2rem;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+h1,
+h2 {
+  font-family: var(--font-title);
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold-dark);
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+h2 {
+  font-size: 1.4rem;
+}
+
+p {
+  margin-bottom: 0.8rem;
+}
+
+hr {
+  width: 100%;
+  max-width: 700px;
+  border: none;
+  border-top: 1px solid var(--gold-dark);
+  margin: 1.5rem 0;
+}
+
+footer {
+  margin: 1rem 0 0.2rem;
+  color: var(--teal);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--gold-deep);
+  border: 2px solid var(--gold-dark);
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  color: var(--text);
+  font-family: var(--font-serif);
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 0.8rem;
+}
+
+.btn:hover {
+  background: #2a1e00;
+  color: var(--gold-light);
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 0 1rem;
+    font-size: 0.75rem;
+  }
+  section,
+  article {
+    margin-top: 1rem;
+  }
+}

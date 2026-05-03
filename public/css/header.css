@@ -1,0 +1,214 @@
+header {
+  width: 100%;
+  background: linear-gradient(to bottom, #0a0800, #000);
+  border-bottom: 1px solid var(--gold-dark);
+  padding: 0.8rem 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header > a {
+  color: inherit;
+  text-decoration: none;
+}
+header > a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+header a img {
+  height: 70px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 0 18px rgba(160, 120, 0, 0.4));
+  transition: filter 0.3s ease;
+}
+
+header a img:hover {
+  filter: drop-shadow(0 0 6px rgba(200, 150, 0, 0.7));
+}
+
+header nav {
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+header nav ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
+}
+
+header nav ul li {
+  display: flex;
+  align-items: center;
+}
+
+header nav ul li + li::before {
+  color: var(--gold-dark);
+  font-size: 1.2rem;
+  padding: 0 1rem;
+}
+
+header nav ul li a {
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a6a20;
+  text-decoration: none;
+  padding: 0.3rem 0.5rem;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+header nav ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.25s ease;
+}
+
+header nav ul li a:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+header nav ul li a:hover::after {
+  width: 100%;
+}
+header nav ul li a.active {
+  color: var(--gold);
+}
+header nav ul li a.active::after {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  header {
+    padding: 0.8rem 2rem;
+  }
+  header a img {
+    height: 55px;
+  }
+  header nav ul li a {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 0.6rem 1rem;
+  }
+  header a img {
+    height: 45px;
+  }
+  header nav ul li + li::before {
+    padding: 0 0.6rem;
+  }
+  header nav ul li a {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    min-height: 44px;
+    line-height: 44px;
+    padding: 0 0.3rem;
+  }
+}
+
+li.dropdown {
+  position: relative;
+}
+
+li.dropdown > button {
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a6a20;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+li.dropdown > button.active {
+  color: var(--gold);
+}
+li.dropdown > button:hover {
+  color: var(--text);
+}
+
+ul.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #0a0800;
+  border: 1px solid var(--gold-dark);
+  border-radius: 4px;
+  padding: 0.4rem 0;
+  min-width: 200px;
+  z-index: 1000;
+  list-style: none;
+  margin: 0;
+}
+
+ul.dropdown-menu li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a6a20;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+ul.dropdown-menu li a:hover {
+  color: var(--text);
+  background: var(--gold-deep);
+  text-decoration: none;
+}
+
+li.dropdown.open ul.dropdown-menu {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  ul.dropdown-menu {
+    right: auto;
+    left: 0;
+  }
+}
+
+@media (max-width: 380px) {
+  header a img {
+    height: 38px;
+  }
+  header nav ul li + li::before {
+    padding: 0 0.4rem;
+  }
+  header nav ul li a {
+    font-size: 0.62rem;
+  }
+}

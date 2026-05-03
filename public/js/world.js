@@ -19,7 +19,7 @@ const map = L.map("map", {
 const canvasRenderer = L.canvas({ padding: 0.5 });
 
 const img = new Image();
-img.src = "The-Western-Provinces.jpg";
+img.src = "/images/The-Western-Provinces.jpg";
 img.onload = function () {
   const IMG_W = img.naturalWidth;
   const IMG_H = img.naturalHeight;
@@ -61,11 +61,13 @@ img.onload = function () {
   }
 
   const hexLayer = L.layerGroup().addTo(map);
+  const labelLayer = L.layerGroup().addTo(map);
   const hexPolygons = [];
   let currentOpacity = 0.0;
 
   function buildHexGrid() {
     hexLayer.clearLayers();
+    labelLayer.clearLayers();
     hexPolygons.length = 0;
     for (let row = 0; row < HEX_ROWS; row++) {
       for (let col = 0; col < HEX_COLS; col++) {
@@ -89,17 +91,31 @@ img.onload = function () {
         poly.on("mouseover", onHexHover);
         poly.on("mouseout", onHexOut);
         poly.addTo(hexLayer);
+
+        if (data) {
+          const label = L.marker([latC, lngC], {
+            icon: L.divIcon({
+              className: "hex-label",
+              html: `${data.name}`,
+              iconSize: [80, 30],
+              iconAnchor: [40, 15],
+            }),
+            interactive: false,
+          });
+          label.addTo(labelLayer);
+        }
+
         hexPolygons.push(poly);
       }
     }
   }
 
   // ── panel elements ──
-  const overlay = document.getElementById("info-overlay");
-  const panelName = document.getElementById("info-name");
-  const panelDesc = document.getElementById("info-desc");
-  const panelBody = document.getElementById("info-body");
-  const panelCoords = document.getElementById("info-coords");
+  const overlay = document.querySelector("aside");
+  const panelName = document.querySelector("#info-name");
+  const panelDesc = document.querySelector("#info-desc");
+  const panelBody = document.querySelector("#info-body");
+  const panelCoords = document.querySelector("#info-coords");
 
   function row(label, value, full = false) {
     if (!value && value !== 0) return "";
@@ -149,8 +165,8 @@ img.onload = function () {
       html += `<div class="row full"><span class="label">Roads</span></div>`;
       data.roads.forEach((road) => {
         html += `<div class="road-entry full">
-          <span class="road-to">${road.to}</span>
-          <span class="road-meta">${road.km}km · ${road.travel_days} days · ${road.type} · ${road.state}</span>
+          <b>${road.to}</b>
+          <small>${road.km}km · ${road.travel_days} days · ${road.type} · ${road.state}</small>
         </div>`;
       });
     }
@@ -198,29 +214,28 @@ img.onload = function () {
     });
   }
 
-  document.getElementById("info-close").addEventListener("click", () => {
+  document.querySelector("#info-close").addEventListener("click", () => {
     overlay.classList.remove("open");
   });
   map.on("click", () => {
     overlay.classList.remove("open");
   });
 
-  document.getElementById("hex-opacity").addEventListener("input", function () {
-    currentOpacity = this.value / 100;
-    hexPolygons.forEach((p) => p.setStyle({ fillOpacity: currentOpacity }));
-  });
-
-  document.getElementById("hex-toggle").addEventListener("change", function () {
+  document.querySelector("#hex-toggle").addEventListener("change", function () {
     this.checked ? hexLayer.addTo(map) : map.removeLayer(hexLayer);
   });
-
-  const coordDisplay = document.getElementById("coords");
+  document
+    .querySelector("#labels-toggle")
+    .addEventListener("change", function () {
+      this.checked ? labelLayer.addTo(map) : map.removeLayer(labelLayer);
+    });
+  const coordDisplay = document.querySelector("#coords");
   map.on("mousemove", function (e) {
     coordDisplay.textContent = `lat: ${e.latlng.lat.toFixed(1)}  lng: ${e.latlng.lng.toFixed(1)}`;
   });
 
-  document.getElementById("fs-btn").addEventListener("click", () => {
-    const box = document.getElementById("map-box");
+  document.querySelector("#fs-btn").addEventListener("click", () => {
+    const box = document.querySelector("#map-box");
     box.classList.toggle("fullscreen");
     setTimeout(() => {
       map.invalidateSize();
@@ -228,7 +243,7 @@ img.onload = function () {
     }, 50);
   });
 
-  fetch("hexdata.json")
+  fetch("/data/hexdata.json")
     .then((r) => r.json())
     .then((data) => {
       HEX_DATA = data;
@@ -239,17 +254,20 @@ img.onload = function () {
         const currentZ = map.getZoom();
         if (currentZ < minZ + 2) {
           map.removeLayer(hexLayer);
+          map.removeLayer(labelLayer);
         } else {
           hexLayer.addTo(map);
+          labelLayer.addTo(map);
         }
       });
     });
+
   // ── mobile ──
-  const mobileBtn = document.getElementById("mobile-map-btn");
-  const mobileCloseBtn = document.getElementById("mobile-close-map");
+  const mobileBtn = document.querySelector("#mobile-map-btn");
+  const mobileCloseBtn = document.querySelector("#mobile-close-map");
 
   mobileBtn.addEventListener("click", () => {
-    const box = document.getElementById("map-box");
+    const box = document.querySelector("#map-box");
     box.classList.add("mobile-open");
     mobileCloseBtn.style.display = "flex";
     mobileBtn.style.display = "none";
@@ -260,7 +278,7 @@ img.onload = function () {
   });
 
   mobileCloseBtn.addEventListener("click", () => {
-    const box = document.getElementById("map-box");
+    const box = document.querySelector("#map-box");
     box.classList.remove("mobile-open");
     mobileCloseBtn.style.display = "none";
     mobileBtn.style.display = "block";

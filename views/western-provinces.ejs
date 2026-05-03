@@ -1,0 +1,58 @@
+<%- include('partials/header', { 
+  title: 'The Western Provinces',
+  extraCss: 'world.css',
+  extraHead: `
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  `
+}) %>
+
+<section>
+  <h1>The Western Provinces</h1>
+  <p>
+    The Western Provinces are a vast, fractured region on the edge of the
+    former Allyrian Empire. For centuries, the land was connected by roads,
+    cities, and shared rule, but that ended after two long winters devastated
+    the population and forced the empire to withdraw.
+  </p>
+  <p>
+    Today, the Provinces are made up of hundreds of independent city-states —
+    large cities, fortified towns, and smaller strongholds. They trade, fight,
+    and form alliances, but nothing lasts long. Most people are either Salian
+    or Caernic, though the difference between them is small and often mixed.
+    Outside the settlements, much of the land has fallen into ruin or
+    wilderness, and travel is always uncertain.
+  </p>
+</section>
+
+<button id="mobile-map-btn">Show Map</button>
+
+<section id="map-box">
+  <button id="fs-btn" title="Fullscreen">⛶</button>
+  <button id="mobile-close-map">✕</button>
+  <div id="map"></div>
+</section>
+
+<aside id="info-overlay">
+  <article id="info">
+    <button id="info-close">✕</button>
+    <h3 id="info-name">—</h3>
+    <p id="info-desc"></p>
+    <section id="info-body"></section>
+    <footer id="info-coords"></footer>
+  </article>
+</aside>
+
+<section id="controls">
+  <label>
+    <input type="checkbox" id="hex-toggle" checked /> Show hex grid
+  </label>
+  <label>
+    <input type="checkbox" id="labels-toggle" checked /> Show labels
+  </label>
+  <output id="coords">lat: — lng: —</output>
+</section>
+
+<script src="/js/world.js"></script>
+
+<%- include('partials/footer') %>

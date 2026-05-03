@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <% if (typeof extraCss !== 'undefined') { %>
+      <link rel="stylesheet" href="/css/<%= extraCss %>" />
+    <% } %>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond&display=swap" rel="stylesheet" />
+    <% if (typeof extraHead !== 'undefined') { %>
+      <%- extraHead %>
+    <% } %>
+    <title>Spellblade - <%= title %></title>
+  </head>
+  <body>
+    <header>
+      <a href="/"><img src="/images/SpellBlade-logo-v3.png" alt="Spellblade" /></a>
+      <nav>
+        <ul>
+          <li><a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>">Home</a></li>
+          <li class="dropdown">
+            <button class="<%= currentPage === 'world' ? 'active' : '' %>">
+              The Worlds of Spellblade
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="/world/western-provinces">The Western Provinces</a></li>
+              <li><a href="/world/iomhrathill">Iomhrathill</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <script>
+  document.querySelector(".dropdown > button").addEventListener("click", function (e) {
+    e.stopPropagation();
+    this.closest(".dropdown").classList.toggle("open");
+  });
+  document.addEventListener("click", function () {
+    document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("open"));
+  });
+</script>
+    <main>
