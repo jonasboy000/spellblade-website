@@ -119,6 +119,9 @@ footer {
     padding: 0 1rem;
     font-size: 0.75rem;
   }
+  main {
+    max-width: 80vw;
+  }
   section,
   article {
     margin-top: 1rem;

@@ -115,7 +115,9 @@ ul.dropdown-menu {
   position: absolute;
   top: 100%;
   right: 0;
-  background: #0a0800;
+  background: rgba(10, 8, 0, 0.75);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   border: 1px solid var(--gold-dark);
   border-radius: 4px;
   padding: 0.4rem 0;
@@ -190,7 +192,7 @@ li.dropdown.open ul.dropdown-menu {
   }
   ul.dropdown-menu {
     min-width: 80vw;
-    left: 50%;
+    left: 40%;
     transform: translateX(-50%);
     right: auto;
   }
