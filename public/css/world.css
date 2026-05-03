@@ -336,11 +336,8 @@ output {
   white-space: normal;
 }
 @media (max-width: 600px) {
-  #mobile-map-btn {
-    display: block;
-  }
   #map-box {
-    display: none;
+    display: block;
   }
   #map-box.mobile-open {
     display: block;
@@ -357,7 +354,7 @@ output {
     border: none;
   }
   #controls {
-    display: none;
+    display: flex;
   }
   aside {
     z-index: 10001;
@@ -371,22 +368,5 @@ output {
     margin: 1rem;
     width: calc(100vw - 2rem) !important;
     max-width: calc(100vw - 2rem) !important;
-  }
-  #mobile-close-map {
-    display: flex;
-    position: fixed;
-    top: 0.8rem;
-    left: 0.8rem;
-    z-index: 10000;
-    background: rgba(5, 5, 2, 0.85);
-    border: 1px solid var(--gold-dark);
-    border-radius: 3px;
-    color: var(--text-muted);
-    font-size: 1rem;
-    width: 32px;
-    height: 32px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
   }
 }
