@@ -28,16 +28,34 @@ img.onload = function () {
     [IMG_H, IMG_W],
   ];
 
+  let fittedMinZoom = -10;
+
+  function checkZoom() {
+    const currentZ = map.getZoom();
+    if (currentZ <= fittedMinZoom + 2) {
+      map.removeLayer(hexLayer);
+      map.removeLayer(labelLayer);
+    } else {
+      hexLayer.addTo(map);
+      labelLayer.addTo(map);
+    }
+  }
+
   L.imageOverlay(img.src, IMG_BOUNDS).addTo(map);
+
   setTimeout(() => {
     map.invalidateSize();
     map.fitBounds(IMG_BOUNDS);
     const minZ = map.getBoundsZoom(IMG_BOUNDS, true);
+    fittedMinZoom = minZ;
     map.setMinZoom(minZ);
     const isMobile = window.innerWidth <= 600;
     map.setMaxZoom(minZ + (isMobile ? 10 : 6));
     map.setZoom(minZ);
+    checkZoom();
   }, 100);
+
+  map.on("zoomend", checkZoom);
 
   const HEX_R = 51.1;
   const COL_STEP = Math.sqrt(3) * HEX_R * 1.002;
@@ -224,11 +242,13 @@ img.onload = function () {
   document.querySelector("#hex-toggle").addEventListener("change", function () {
     this.checked ? hexLayer.addTo(map) : map.removeLayer(hexLayer);
   });
+
   document
     .querySelector("#labels-toggle")
     .addEventListener("change", function () {
       this.checked ? labelLayer.addTo(map) : map.removeLayer(labelLayer);
     });
+
   const coordDisplay = document.querySelector("#coords");
   map.on("mousemove", function (e) {
     coordDisplay.textContent = `lat: ${e.latlng.lat.toFixed(1)}  lng: ${e.latlng.lng.toFixed(1)}`;
@@ -241,16 +261,12 @@ img.onload = function () {
       map.invalidateSize();
       map.fitBounds(IMG_BOUNDS);
       const minZ = map.getBoundsZoom(IMG_BOUNDS, true);
+      fittedMinZoom = minZ;
       map.setMinZoom(minZ);
       const isMobile = window.innerWidth <= 600;
       map.setMaxZoom(minZ + (isMobile ? 10 : 6));
       map.setZoom(minZ);
-
-      // check zoom after min is set
-      if (map.getZoom() <= minZ + 2) {
-        map.removeLayer(hexLayer);
-        map.removeLayer(labelLayer);
-      }
+      checkZoom();
     }, 100);
   });
 
@@ -259,22 +275,7 @@ img.onload = function () {
     .then((data) => {
       HEX_DATA = data;
       buildHexGrid();
-
-      function checkZoom() {
-        const currentZ = map.getZoom();
-        const minZ = map.getMinZoom();
-        if (currentZ <= minZ + 2) {
-          map.removeLayer(hexLayer);
-          map.removeLayer(labelLayer);
-        } else {
-          hexLayer.addTo(map);
-          labelLayer.addTo(map);
-        }
-      }
-
       checkZoom();
-
-      map.on("zoomend", checkZoom);
     });
 
   // ── mobile ──
@@ -289,6 +290,13 @@ img.onload = function () {
     setTimeout(() => {
       map.invalidateSize();
       map.fitBounds(IMG_BOUNDS);
+      const minZ = map.getBoundsZoom(IMG_BOUNDS, true);
+      fittedMinZoom = minZ;
+      map.setMinZoom(minZ);
+      const isMobile = window.innerWidth <= 600;
+      map.setMaxZoom(minZ + (isMobile ? 10 : 6));
+      map.setZoom(minZ);
+      checkZoom();
     }, 50);
   });
 
