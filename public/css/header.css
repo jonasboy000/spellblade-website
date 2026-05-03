@@ -25,7 +25,6 @@ header a img {
   filter: drop-shadow(0 0 18px rgba(160, 120, 0, 0.4));
   transition: filter 0.3s ease;
 }
-
 header a img:hover {
   filter: drop-shadow(0 0 6px rgba(200, 150, 0, 0.7));
 }
@@ -41,25 +40,12 @@ header nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-header nav ul {
-  display: flex;
-  align-items: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
   gap: 2rem;
 }
 
 header nav ul li {
   display: flex;
   align-items: center;
-}
-
-header nav ul li + li::before {
-  color: var(--gold-dark);
-  font-size: 1.2rem;
-  padding: 0 1rem;
 }
 
 header nav ul li a {
@@ -97,37 +83,6 @@ header nav ul li a.active {
 }
 header nav ul li a.active::after {
   width: 100%;
-}
-
-@media (max-width: 900px) {
-  header {
-    padding: 0.8rem 2rem;
-  }
-  header a img {
-    height: 55px;
-  }
-  header nav ul li a {
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 600px) {
-  header {
-    padding: 0.6rem 1rem;
-  }
-  header a img {
-    height: 45px;
-  }
-  header nav ul li + li::before {
-    padding: 0 0.6rem;
-  }
-  header nav ul li a {
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
-    min-height: 44px;
-    line-height: 44px;
-    padding: 0 0.3rem;
-  }
 }
 
 li.dropdown {
@@ -189,15 +144,55 @@ ul.dropdown-menu li a:hover {
   background: var(--gold-deep);
   text-decoration: none;
 }
-
 li.dropdown.open ul.dropdown-menu {
   display: block;
 }
 
+@media (max-width: 900px) {
+  header {
+    padding: 0.8rem 2rem;
+  }
+  header a img {
+    height: 55px;
+  }
+  header nav ul li a {
+    font-size: 0.8rem;
+  }
+}
+
 @media (max-width: 600px) {
+  header {
+    padding: 0.6rem 1rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  header a img {
+    height: 45px;
+  }
+  header nav ul {
+    justify-content: center;
+  }
+  header nav ul li a {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    min-height: 44px;
+    line-height: 44px;
+    padding: 0 0.3rem;
+  }
+  li.dropdown > button {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    min-height: 44px;
+    line-height: 44px;
+    padding: 0 0.3rem;
+    white-space: nowrap;
+  }
   ul.dropdown-menu {
+    min-width: 80vw;
+    left: 50%;
+    transform: translateX(-50%);
     right: auto;
-    left: 0;
   }
 }
 
@@ -205,10 +200,10 @@ li.dropdown.open ul.dropdown-menu {
   header a img {
     height: 38px;
   }
-  header nav ul li + li::before {
-    padding: 0 0.4rem;
-  }
   header nav ul li a {
+    font-size: 0.62rem;
+  }
+  li.dropdown > button {
     font-size: 0.62rem;
   }
 }

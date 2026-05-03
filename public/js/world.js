@@ -249,6 +249,13 @@ img.onload = function () {
       HEX_DATA = data;
       buildHexGrid();
 
+      const minZ = map.getMinZoom();
+      const currentZ = map.getZoom();
+      if (currentZ < minZ + 2) {
+        map.removeLayer(hexLayer);
+        map.removeLayer(labelLayer);
+      }
+
       map.on("zoomend", function () {
         const minZ = map.getMinZoom();
         const currentZ = map.getZoom();
