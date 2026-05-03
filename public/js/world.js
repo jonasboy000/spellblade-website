@@ -60,8 +60,8 @@ img.onload = function () {
     return pts;
   }
 
-  const hexLayer = L.layerGroup().addTo(map);
-  const labelLayer = L.layerGroup().addTo(map);
+  const hexLayer = L.layerGroup();
+  const labelLayer = L.layerGroup();
   const hexPolygons = [];
   let currentOpacity = 0.0;
 
@@ -240,7 +240,18 @@ img.onload = function () {
     setTimeout(() => {
       map.invalidateSize();
       map.fitBounds(IMG_BOUNDS);
-    }, 50);
+      const minZ = map.getBoundsZoom(IMG_BOUNDS, true);
+      map.setMinZoom(minZ);
+      const isMobile = window.innerWidth <= 600;
+      map.setMaxZoom(minZ + (isMobile ? 10 : 6));
+      map.setZoom(minZ);
+
+      // check zoom after min is set
+      if (map.getZoom() <= minZ + 2) {
+        map.removeLayer(hexLayer);
+        map.removeLayer(labelLayer);
+      }
+    }, 100);
   });
 
   fetch("/data/hexdata.json")
@@ -249,24 +260,21 @@ img.onload = function () {
       HEX_DATA = data;
       buildHexGrid();
 
-      const minZ = map.getMinZoom();
-      const currentZ = map.getZoom();
-      if (currentZ < minZ + 2) {
-        map.removeLayer(hexLayer);
-        map.removeLayer(labelLayer);
-      }
-
-      map.on("zoomend", function () {
-        const minZ = map.getMinZoom();
+      function checkZoom() {
         const currentZ = map.getZoom();
-        if (currentZ < minZ + 2) {
+        const minZ = map.getMinZoom();
+        if (currentZ <= minZ + 2) {
           map.removeLayer(hexLayer);
           map.removeLayer(labelLayer);
         } else {
           hexLayer.addTo(map);
           labelLayer.addTo(map);
         }
-      });
+      }
+
+      checkZoom();
+
+      map.on("zoomend", checkZoom);
     });
 
   // ── mobile ──
